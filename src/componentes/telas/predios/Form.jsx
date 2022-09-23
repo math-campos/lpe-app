@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import Alerta from "../../Alerta";
 import PrediosContext from "./PrediosContext";
+import CampoEntrada from "../../comuns/CampoEntrada";
+import Dialogo from "../../comuns/Dialogo";
 
 function Form() {
 
@@ -27,105 +29,35 @@ function Form() {
     })()
 
     return (
-        <div className="modal fade" id="modalEdicao" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Prédio</h5>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form id="formulario" onSubmit={acaoCadastrar}
-                        className="needs-validation" noValidate>
-                        <div className="modal-body">
-                            <Alerta alerta={alerta} />
-                            <div className="form-group">
-                                <label htmlFor="txtCodido" className="form-label">
-                                    Código
-                                </label>
-                                <input
-                                    type="text"
-                                    readOnly
-                                    className="form-control"
-                                    id="txtCodido"
-                                    name="codigo"
-                                    value={objeto.codigo}
-                                    onChange={handleChange}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="txtNome" className="form-label">
-                                    Nome
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="txtNome"
-                                    name="nome"
-                                    value={objeto.nome}
-                                    onChange={handleChange}
-                                    required
-                                />
-                                <div className="valid-feedback">
-                                    Campo nome OK
-                                </div>
-                                <div className="invalid-feedback">
-                                    Campo nome é obrigatório
-                                </div>                                
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="txtDescricao" className="form-label">
-                                    Descrição
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="txtSite"
-                                    name="descricao"
-                                    value={objeto.descricao}
-                                    onChange={handleChange}
-                                    required
-                                />
-                                <div className="valid-feedback">
-                                    Campo descrição OK
-                                </div>
-                                <div className="invalid-feedback">
-                                    Campo descrição é obrigatório
-                                </div>                                  
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="txtSigla" className="form-label">
-                                    Sigla
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="txtSigla"
-                                    maxLength="4"
-                                    name="sigla"
-                                    value={objeto.sigla}
-                                    onChange={handleChange}
-                                    required
-                                />
-                                <div className="valid-feedback">
-                                    Campo sigla OK
-                                </div>
-                                <div className="invalid-feedback">
-                                    Campo sigla é obrigatório
-                                </div>                                  
-                            </div>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="submit" className="btn btn-success" >
-                                Salvar  <i className="bi bi-save"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <Dialogo id="modalEdicao" titulo="Prédio" idform="formulario"
+            acaoCadastrar={acaoCadastrar}>
+            <Alerta alerta={alerta} />
+            <CampoEntrada id="txtCodigo" label="Código" tipo="number"
+                name="codigo" value={objeto.codigo}
+                onchange={handleChange} requerido={false}
+                readonly={true} tamanho={5}
+                msgvalido=""
+                msginvalido="" />
+            <CampoEntrada id="txtNome" label="Nome" tipo="text"
+                name="nome" value={objeto.nome}
+                onchange={handleChange} requerido={true}
+                readonly={false} tamanho={40}
+                msgvalido="Campo nome OK"
+                msginvalido="Campo nome é obrigatório" />
+            <CampoEntrada id="txtDescricao" label="Descrição" tipo="text"
+                name="descricao" value={objeto.descricao}
+                onchange={handleChange} requerido={true}
+                readonly={false} tamanho={40}
+                msgvalido="Campo descrição OK"
+                msginvalido="Campo descrição é obrigatório" />
+            <CampoEntrada id="txtSigla" label="Sigla" tipo="text"
+                name="sigla" value={objeto.sigla}
+                onchange={handleChange} requerido={true}
+                readonly={false} tamanho={4}
+                msgvalido="Campo Sigla OK"
+                msginvalido="Campo Sigla é obrigatório" />
+        </Dialogo>
     )
-
 }
 
 export default Form;
