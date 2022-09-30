@@ -7,6 +7,7 @@ import Home from './componentes/Home'
 import {BrowserRouter as Router, Routes , Route } from 'react-router-dom'
 import React from 'react';
 import Predios from './componentes/telas/predios/Predios';
+import Salas from './componentes/telas/salas/Salas'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home/>}/>
           <Route exact path="/predios" element={<Predios/>}/>
+          <Route exact path="/salas" element={<Salas/>}/>
         </Routes>
     </Router>
   );
